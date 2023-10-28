@@ -38,7 +38,7 @@ pipeline {
                 }
             }
         }
-        tage("staticCodeAnalysis testing") {
+        stage("staticCodeAnalysis testing") {
         when { expression { param.action== 'create'}}
             steps {
                 script {
