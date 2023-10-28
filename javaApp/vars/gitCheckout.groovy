@@ -1,4 +1,4 @@
-def call(Map stageParams){
+def call(Map1 stageParams){
 
     checkout([
 
