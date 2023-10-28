@@ -21,5 +21,12 @@ pipeline {
                 }
             }
         }
+        stage("Mven integration testing") {
+            steps {
+                script {
+                    mvnintegrationTest()
+                }
+            }
+        }
     }
 }
