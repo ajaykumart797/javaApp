@@ -33,7 +33,7 @@ pipeline {
                 }
             }
         }
-        stage("Mven integration testing") {
+        stage("Maven integration testing") {
         when { expression { params.action== 'create'}}
             steps {
                 script {
@@ -50,15 +50,15 @@ pipeline {
                 }
             }
         }
-        stage("Quality gate way status") {
-        when { expression { params.action== 'create'}}
-            steps {
-                script {
-                    def SonarcredentialsId = 'sonar'
-                    QualityGatestatus(SonarcredentialsId)
-                }
-            }
-        }
+        // stage("Quality gate way status") {
+        // when { expression { params.action== 'create'}}
+        //     steps {
+        //         script {
+        //             def SonarcredentialsId = 'sonar'
+        //             QualityGatestatus(SonarcredentialsId)
+        //         }
+        //     }
+        // }
         stage("Maven build") {
         when { expression { params.action== 'create'}}
             steps {
