@@ -50,15 +50,15 @@ pipeline {
                 }
             }
         }
-        // stage("Quality gate way status") {
-        // when { expression { params.action== 'create'}}
-        //     steps {
-        //         script {
-        //             def SonarcredentialsId = 'sonar'
-        //             QualityGatestatus(SonarcredentialsId)
-        //         }
-        //     }
-        // }
+        stage("Quality gate way status") {
+        when { expression { params.action== 'create'}}
+            steps {
+                script {
+                    def SonarcredentialsId = 'sonar'
+                    QualityGatestatus(SonarcredentialsId)
+                }
+            }
+        }
         stage("Maven build") {
         when { expression { params.action== 'create'}}
             steps {
@@ -80,6 +80,14 @@ pipeline {
             steps {
                 script {
                  dockerImagescan("${params.imageName}","${params.imageTag}", "${params.dockerhubuser}")
+                }
+            }
+        }
+        stage("Docker Push") {
+        when { expression{ params.action== 'create'}}
+            steps {
+                script {
+                 dockerImagePush("${params.imageName}","${params.imageTag}", "${params.dockerhubuser}")
                 }
             }
         }
